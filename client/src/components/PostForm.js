@@ -1,10 +1,14 @@
 import {useState} from 'react'
 import{usePostsContext} from "../hooks/usePostsContext"
+import { useAuthContext } from '../hooks/useAuthContext';
+
 
 const PostForm = ()=>{
   const {dispatch}=usePostsContext()
-    const [title, setTitle] = useState('')
-const [content, setContent] = useState('')
+  const {user}=useAuthContext()
+
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
 const [image, setImage] = useState('')
 const [url, setUrl] = useState('')
 const [votes, setVotes] = useState('')
@@ -14,13 +18,21 @@ const [error,setError ] = useState(null)
 const handleSubmit = async(e)=>{
   e.preventDefault()
 
+  if (!user){
+    setError('you must be logged in')
+    return
+    
+  }
+
   const post={title,content,image,url,votes,commentsCount}
 
   const response = await fetch('/api/posts',{
     method:'POST',
     body:JSON.stringify(post),
     headers:{
-      'Content-Type':'application/json'
+      
+      'Content-Type':'application/json',
+      'Authorization': `Bearer ${user.token}`
     }
   })
   const json= await response.json()

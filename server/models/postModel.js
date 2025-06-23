@@ -11,7 +11,14 @@ const postSchema = new mongoose.Schema({
   content: String,
   image: String,
   url: String,
-//   author: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+   user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User', // assuming you have a User model
+    required: true
+  },
+  username{
+
+  },
   votes: {
     type: Number,
     default: 0

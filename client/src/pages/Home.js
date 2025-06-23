@@ -1,51 +1,34 @@
-import { useEffect } from "react";
-import{usePostsContext} from "../hooks/usePostsContext"
-
-import PostDetails from "../components/PostDetails";
+import React from 'react'
+import { useEffect,useState } from 'react'
+//components
+import PostDetails from '../components/PostDetails'
 import LeftSidebar from "../components/LeftSidebar";
-import RightSidebar from "../components/RightSidebar";
-import PostForm from "../components/PostForm";
-
-
-
 const Home = () => {
-  const{posts,dispatch}=  usePostsContext()
+  const [posts,setAllPosts]= useState(null)
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch("/api/posts");
-      const json = await response.json();
-
-      if (response.ok) {
-        dispatch({type:'SET_POSTS', payload:json})
+  //useeffect is used to call api to fetch data
+  useEffect(()=>{
+    const fetchAllPost= async()=>{
+      const response = await fetch('/api/posts/all')
+      const json = await response.json()
+      
+      if(response.ok) {
+        setAllPosts(json)
       }
-    };
+    }
+    fetchAllPost()
 
-    fetchPosts();
-  }, [dispatch]);
-
+  }, [])
   return (
     <div className="home">
-      
-      {/* Left Sidebar */}
       <LeftSidebar />
-
-      {/* Center Post Area */}
-      
-      <div className="main-content " >
-      <div className="posts-form" >
-        <PostForm/>
+      <div className="allpost">
+        {posts && posts.map((post) => (
+         <PostDetails key={post._id} post={post}/>
+        ))}
       </div>
-      <div className="posts-container">
-        {posts &&
-          posts.map((post) => <PostDetails key={post._id} post={post} />)}
-      </div>
-      </div>
+ </div>
+  )
+}
 
-      {/* Right Sidebar */}
-      <RightSidebar />
-    </div>
-  );
-};
-
-export default Home;
+export default Home

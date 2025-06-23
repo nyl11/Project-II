@@ -40,17 +40,20 @@ header a{
 
 .home {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
   gap: 10px;
   min-height: 100vh; /* Make the grid at least full height */
 }
 
-.left-sidebar,
+.left-sidebar{
+  background: #f1f1f1;
+}
 .right-sidebar {
   background: #fff;
   padding: 20px;
   border-radius: 10px;
-  height: 100%;
+  height: auto;
+  margin: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 /* Wrapper for all posts */
@@ -152,4 +155,134 @@ header a{
   font-size: 20px;
 }
   
-  
+  /* nav */
+  /* Add this to your CSS file or styled component */
+header {
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.8rem;
+  color: #333;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: #333;
+  transition: color 0.3s;
+  margin:8px;
+}
+
+nav a:hover {
+  color: #007bff;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #007bff;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+/* Shared form styling */
+.login, .signup {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.login h3, .signup h3 {
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+  color: #555;
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #a0c4ff;
+  cursor: not-allowed;
+}
+.logout{
+  display: flex;
+}
+.logout span{
+  margin: 8px;
+  color: #555;
+}
+.error {
+  margin-top: 1rem;
+  color: #ff4d4d;
+  font-size: 0.9rem;
+  text-align: center;
+}
