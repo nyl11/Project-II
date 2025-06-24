@@ -13,11 +13,12 @@ const postSchema = new mongoose.Schema({
   url: String,
    user_id: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // assuming you have a User model
+    ref: 'User', // usermodel
     required: true
   },
-  username{
-
+  username :{
+    type: String,
+    required:true
   },
   votes: {
     type: Number,

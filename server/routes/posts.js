@@ -6,6 +6,7 @@ const {
     getPosts,
     updatePost,
     deletePost,
+    votePost,
     getAllPosts
 }=require('../controllers/postController')
 
@@ -32,6 +33,9 @@ router.post('/', createPost)
 
 //DELET a  post
 router.delete('/:id',deletePost)
+
+//voteing in post
+router.patch('/:id/vote', votePost);
 
 //UPDATE a single post
 router.patch('/:id',updatePost)

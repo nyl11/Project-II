@@ -1,5 +1,6 @@
-const Post = require('../models/postModel')
-const mongoose=require('mongoose')
+const Post = require('../models/postModel');
+const User =require('../models/userModel');
+const mongoose=require('mongoose');
 
 
 // Get all posts (regardless of user)
@@ -41,19 +42,35 @@ const getPost=async(req,res)=>{
 }
 
 //ceate new post
-const createPost =async(req,res)=>{
-    const {title,content,image,url,votes,commentsCount}=req.body
+const createPost = async (req, res) => {
+  const { title, content, image, url, votes, commentsCount } = req.body;
 
-     // add a doc to db
+  try {
+    const user_id = req.user._id;
 
-    try{
-        const user_id= req.user._id
-        const post= await Post.create({title,content,image,url,votes,commentsCount,user_id })
-        res.status(200).json(post)
-    }catch(error){
-          res.status(400).json({error: error.message})
+    //  Fetch the username from the User model
+    const user = await User.findById(user_id).select('username');
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
     }
-}
+
+    //  Create the post with the username included
+    const post = await Post.create({
+      title,
+      content,
+      image,
+      url,
+      votes,
+      commentsCount,
+      user_id,
+      username: user.username // set this manually
+    });
+
+    res.status(200).json(post);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 //delete a post
 const deletePost = async (req, res) => {
     const { id } = req.params;
@@ -98,6 +115,27 @@ const updatePost = async (req,res)=>{
     }
     res.status(200).json(post)
 }
+//voting end point
+const votePost = async (req, res) => {
+  const { id } = req.params;
+  const { voteChange } = req.body; // +1 or -1
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: 'Invalid post ID' });
+  }
+
+  try {
+    const post = await Post.findById(id);
+    if (!post) return res.status(404).json({ error: 'Post not found' });
+
+    post.votes += voteChange;
+    await post.save();
+
+    res.status(200).json({ votes: post.votes });
+  } catch (error) {
+    res.status(500).json({ error: 'Could not update votes' });
+  }
+};
 
 module.exports={
     getPost,
@@ -105,5 +143,6 @@ module.exports={
     createPost,
     deletePost,
     updatePost,
-    getAllPosts
+    getAllPosts,
+    votePost 
 }
