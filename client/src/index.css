@@ -1,4 +1,4 @@
-/* Importing a Google Font */
+/* Importing Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 * {
@@ -7,158 +7,14 @@
   box-sizing: border-box;
 }
 
-body{
-    background: #f1f1f1;
-    margin: 0;
-    font-family: "Poppins";
-}
-header{
-    background: #fff;
-}
-
-header .container{
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-header a{
-    color: #333;
-    text-decoration: none;
-}
-
-
-/* Pages wrapper to separate main content */
-.pages {
- max-width: 1400px;
- padding: 20px;
- margin: 0 auto;
-}
-
-.home {
-  display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  gap: 10px;
-  min-height: 100vh; /* Make the grid at least full height */
-}
-
-.left-sidebar{
+body {
   background: #f1f1f1;
+  font-family: 'Poppins', Arial, sans-serif; /* Added fallback font */
 }
-.right-sidebar {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  height: auto;
-  margin: 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-/* Wrapper for all posts */
-.posts-container {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-  
-  /* Each individual post */
-  .post-details {
-    position: relative;
-    background: #fafafa;
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 8px;
-    transition: transform 0.2s ease;
-  }
-  
-  .post-details:hover {
-    transform: translateY(-3px);
-  }
-  
-  /* Post text styling */
-  .post-details h4 {
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .post-details p {
-    margin: 6px 0;
-    color: #555;
-    font-size: 0.95rem;
-  }
-  
-  /* Optional: timestamp formatting */
-  .post-details time {
-    font-size: 0.85rem;
-    color: #999;
-  }
-  
-  .create {
-    background: #fff;
-    padding: 12px 16px;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-    max-width: 100%;
-    margin: 0 auto 20px auto;
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .create input,textarea{
-    font-family: 'Poppins', sans-serif;
-    height: 30px;
-    border:none;
-    border-bottom:1px solid #555 ;
-    overflow: auto;
-  }
-  .action {
-    display: flex;
-    justify-content: flex-end; /* Pushes buttons to the right */
-    gap: 8px;
-  }
-  .action button {
-    padding: 8px 10px;
-    font-size: 0.9rem;
-    border: none;
-    background: black;
-    color: #ddd;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    align-items: end;
-  }
-  .error {
-    color: #ff4d4f; /* Bright red for visibility */
-    background-color: #ffecec; /* Light red background */
-    border: 1px solid #ff4d4f;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    font-size: 14px;
-    font-family: Arial, sans-serif;
-  }
- .delete-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  color: red;
-  border-radius: 50%;
-  padding: 5px;
-  cursor: pointer;
-  font-size: 20px;
-}
-  
-  /* nav */
-  /* Add this to your CSS file or styled component */
+
+/* Header */
 header {
-  background-color: #fff;
+  background: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   padding: 1rem 0;
   position: sticky;
@@ -166,22 +22,21 @@ header {
   z-index: 1000;
 }
 
-.container {
-  max-width: 1200px;
+header .container {
+  max-width: 1400px; /* Consistent max-width */
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 10px 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
-h1 {
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 1.8rem;
+header a {
   color: #333;
-  margin: 0;
+  text-decoration: none;
 }
 
+/* Navigation */
 nav {
   display: flex;
   gap: 2rem;
@@ -189,42 +44,206 @@ nav {
 }
 
 nav a {
-  text-decoration: none;
   font-size: 1rem;
   color: #333;
   transition: color 0.3s;
-  margin:8px;
+  margin: 8px;
 }
 
 nav a:hover {
   color: #007bff;
 }
 
-button {
-  padding: 0.5rem 1rem;
-  border: 1px solid #007bff;
-  background-color: #007bff;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+/* Pages wrapper */
+.pages {
+  max-width: 1400px;
+  padding: 20px;
+  margin: 0 auto;
 }
 
-button:hover {
-  background-color: #0056b3;
+/* Home layout */
+.home {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: 10px;
+  min-height: 100vh;
 }
-/* Shared form styling */
-.login, .signup {
+
+.left-sidebar {
+  background: #f1f1f1;
+}
+
+.right-sidebar {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Posts container */
+.posts-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Individual post */
+.post-details {
+  position: relative;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.post-details:hover {
+  transform: translateY(-3px);
+}
+
+.post-details h4 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.post-details p {
+  margin: 6px 0; /* Consolidated margin */
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.post-details time {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+/* Voting UI */
+.votes {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.votes button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 1.4rem;
+}
+
+.vote-icon {
+  color: #888; /* Default icon color */
+  transition: color 0.3s ease;
+}
+
+.vote-icon.liked {
+  color: #28a745; /* Green for upvote */
+}
+
+.vote-icon.disliked {
+  color: #dc3545; /* Red for downvote */
+}
+
+.votes button:hover .vote-icon {
+  color: #555; /* Hover for unvoted icons */
+}
+
+.votes button:hover .vote-icon.liked {
+  color: #218838; /* Darker green on hover */
+}
+
+.votes button:hover .vote-icon.disliked {
+  color: #c82333; /* Darker red on hover */
+}
+
+/* Delete button */
+.delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #dc3545; /* Red to match theme */
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background 0.2s ease;
+}
+
+.delete-button:hover {
+  background-color: rgba(220, 53, 69, 0.1); /* Light red hover */
+}
+
+/* Create post form */
+.create {
+  background: #fff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  max-width: 100%;
+  margin: 0 auto 20px;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.create input,
+.create textarea {
+  font-family: 'Poppins', sans-serif;
+  height: 30px;
+  border: none;
+  border-bottom: 1px solid #555;
+  overflow: auto;
+}
+
+.create textarea {
+  height: auto; /* Allow textarea to grow */
+  resize: vertical; /* Restrict to vertical resize */
+}
+
+/* Action buttons */
+.action {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.action button {
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  border: none;
+  background: #333; /* Darker button for actions */
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.action button:hover {
+  background: #222;
+}
+
+/* Login/Signup forms */
+.login,
+.signup {
   max-width: 400px;
   margin: 3rem auto;
   padding: 2rem;
-  background-color: #fff;
+  background: #fff;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Poppins', sans-serif; /* Consistent font */
 }
 
-.login h3, .signup h3 {
+.login h3,
+.signup h3 {
   margin-bottom: 1.5rem;
   color: #333;
   font-size: 1.5rem;
@@ -253,36 +272,51 @@ input:focus {
   outline: none;
 }
 
+/* General button */
 button {
-  width: 100%;
   padding: 0.75rem;
-  background-color: #007bff;
-  color: white;
+  background: #007bff;
+  color: #fff;
   border: none;
   border-radius: 4px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background: #0056b3;
 }
 
 button:disabled {
-  background-color: #a0c4ff;
+  background: #a0c4ff;
   cursor: not-allowed;
 }
-.logout{
+
+/* Logout */
+.logout {
   display: flex;
+  align-items: center;
 }
-.logout span{
+
+.logout span {
   margin: 8px;
-  color: #555;
+  color: #007bff; /* Match theme */
+  cursor: pointer;
 }
+
+.logout span:hover {
+  color: #0056b3;
+}
+
+/* Error message */
 .error {
-  margin-top: 1rem;
-  color: #ff4d4d;
+  color: #ff4d4f;
+  background: #ffecec;
+  border: 1px solid #ff4d4f;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
   font-size: 0.9rem;
   text-align: center;
 }

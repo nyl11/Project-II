@@ -1,10 +1,12 @@
 import React from 'react'
-import { useEffect,useState } from 'react'
+import { useEffect } from 'react'
+import { usePostsContext } from '../hooks/usePostsContext';
+
 //components
 import PostDetails from '../components/PostDetails'
 import LeftSidebar from "../components/LeftSidebar";
 const Home = () => {
-  const [posts,setAllPosts]= useState(null)
+  const {posts, dispatch}=usePostsContext()
 
   //useeffect is used to call api to fetch data
   useEffect(()=>{
@@ -13,7 +15,7 @@ const Home = () => {
       const json = await response.json()
       
       if(response.ok) {
-        setAllPosts(json)
+        dispatch({ type: 'SET_POSTS', payload: json });
       }
     }
     fetchAllPost()

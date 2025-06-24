@@ -45,8 +45,9 @@ const MyPosts = () => {
         <PostForm/>
       </div>
       <div className="posts-container">
-        {posts &&
-          posts.map((post) => <PostDetails key={post._id} post={post} />)}
+        {posts && posts.map((post) => (
+  <PostDetails key={post._id} post={post} canDelete={true} />
+))}
       </div>
       </div>
 

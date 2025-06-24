@@ -115,10 +115,12 @@ const updatePost = async (req,res)=>{
     }
     res.status(200).json(post)
 }
+
 //voting end point
 const votePost = async (req, res) => {
   const { id } = req.params;
   const { voteChange } = req.body; // +1 or -1
+  const userId = req.user._id;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({ error: 'Invalid post ID' });
@@ -128,14 +130,44 @@ const votePost = async (req, res) => {
     const post = await Post.findById(id);
     if (!post) return res.status(404).json({ error: 'Post not found' });
 
-    post.votes += voteChange;
+    const existingVoteIndex = post.votedUsers.findIndex(
+      v => v.userId.toString() === userId.toString()
+    );
+
+    const newVoteType = voteChange > 0 ? 'up' : 'down';
+
+    if (existingVoteIndex > -1) {
+      const existingVote = post.votedUsers[existingVoteIndex];
+
+      if (existingVote.voteType === newVoteType) {
+        // 🔁 Same vote again -> undo vote
+        post.votes -= voteChange;
+        post.votedUsers.splice(existingVoteIndex, 1);
+      }
+ else {
+        // 🔄 Switch vote type
+       post.votes += voteChange - (existingVote.voteType === 'up' ? 1 : -1);
+post.votedUsers[existingVoteIndex].voteType = newVoteType;
+      }
+    } else {
+      // ✅ New vote
+      post.votes += voteChange;
+      post.votedUsers.push({ userId, voteType: newVoteType });
+    }
+
     await post.save();
 
-    res.status(200).json({ votes: post.votes });
+    res.status(200).json({
+      votes: post.votes,
+      votedUsers: post.votedUsers,
+    });
   } catch (error) {
-    res.status(500).json({ error: 'Could not update votes' });
+    res.status(500).json({ error: 'Could not update vote' });
   }
 };
+
+
+
 
 module.exports={
     getPost,
