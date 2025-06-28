@@ -134,6 +134,24 @@ const votePost = async (req, res) => {
       v => v.userId.toString() === userId.toString()
     );
 
+    if (voteChange === 0) {
+  // Remove vote if exists
+  const existingVoteIndex = post.votedUsers.findIndex(
+    v => v.userId.toString() === userId.toString()
+  );
+
+  if (existingVoteIndex > -1) {
+    const voteType = post.votedUsers[existingVoteIndex].voteType;
+    post.votes += voteType === 'up' ? -1 : 1;
+    post.votedUsers.splice(existingVoteIndex, 1);
+    await post.save();
+  }
+
+  return res.status(200).json({
+    votes: post.votes,
+    votedUsers: post.votedUsers,
+  });
+}
     const newVoteType = voteChange > 0 ? 'up' : 'down';
 
     if (existingVoteIndex > -1) {

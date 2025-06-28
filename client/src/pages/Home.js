@@ -8,6 +8,7 @@ import LeftSidebar from "../components/LeftSidebar";
 const Home = () => {
   const {posts, dispatch}=usePostsContext()
 
+
   //useeffect is used to call api to fetch data
   useEffect(()=>{
     const fetchAllPost= async()=>{
