@@ -12,6 +12,7 @@ const LikeButtons = ({ post }) => {
   useEffect(() => {
     const userId = user?._id;
     const vote = post.votedUsers?.find(v => v.userId === userId);
+    // debugger
     setVoteType(vote ? vote.voteType : null);
   }, [post.votedUsers, user]);
 
@@ -51,10 +52,10 @@ const LikeButtons = ({ post }) => {
   return (
     <div className="votes">
       <button className={voteType === 'up' ? 'voted-up' : ''} onClick={() => handleVote(voteType === 'up' ? 0 : 1)}>
-        {voteType === 'up' ? <FaThumbsUp /> : <FiThumbsUp />}
+        {voteType === 'up' ? <FaThumbsUp /> : <FiThumbsUp />} <span>Support</span>
       </button>
       <button className={voteType === 'down' ? 'voted-down' : ''} onClick={() => handleVote(voteType === 'down' ? 0 : -1)}>
-        {voteType === 'down' ? <FaThumbsDown /> : <FiThumbsDown />}
+        {voteType === 'down' ? <FaThumbsDown /> : <FiThumbsDown />} <span>Oppose</span> 
       </button>
     </div>
   );

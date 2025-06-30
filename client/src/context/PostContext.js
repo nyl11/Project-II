@@ -31,7 +31,17 @@ export const PostsReducer = (state, action) => {
             : p
         ),
       };
-
+case 'UPDATE_POST_COMMENTS_COUNT':
+  return {
+    posts: state.posts.map((p) =>
+      p._id === action.payload.postId
+        ? {
+            ...p,
+            commentsCount: action.payload.commentsCount,
+          }
+        : p
+    ),
+  };
     default:
       return state;
   }

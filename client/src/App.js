@@ -5,7 +5,8 @@ import Home from './pages/Home'
 import Navbar from './components/Navbar'
 import Login from  './pages/Login'
 import Signup from './pages/Signup'
-import MyPosts from './pages/MyPosts'
+import CreatePost from './pages/CreatePost'
+import UserProfile from './pages/UserProfile'
 
 
 function App() {
@@ -29,8 +30,13 @@ function App() {
              element={!user ?<Signup/>:<Navigate to="/"/>}
             />
             <Route
-             path="/my-posts"
-             element={user ? <MyPosts/> : <Navigate to="/login"/>}
+             path="/createpost"
+             element={user ? <CreatePost/> : <Navigate to="/login"/>}
+            />
+
+            <Route
+             path="/profile"
+             element={user ? <UserProfile/> : <Navigate to="/login"/>}
             />
 
          </Routes>
