@@ -30,6 +30,14 @@ const postSchema = new mongoose.Schema({
     voteType: { type: String, enum: ['up', 'down'] } // Track type of vote
   }
 ],
+comments: [
+  {
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    username: String,
+    text: String,
+    createdAt: { type: Date, default: Date.now }
+  }
+],
   commentsCount: {
     type: Number,
     default: 0

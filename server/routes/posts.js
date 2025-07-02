@@ -7,16 +7,21 @@ const {
     updatePost,
     deletePost,
     votePost,
-    getAllPosts
+    getAllPosts,
+    getComments,
+    addComment,
+    deleteComment
 }=require('../controllers/postController')
 
 
 const requireAuth = require('../middleware/requireAuth')
 
 const router = express.Router()
+// router.patch('/:id/comment', addComment);
 
 // All posts - no auth required
 router.get('/all', getAllPosts)
+
 
 //protected routes
 router.use(requireAuth)
@@ -39,5 +44,13 @@ router.patch('/:id/vote', votePost);
 
 //UPDATE a single post
 router.patch('/:id',updatePost)
+
+//comment
+router.get('/:id/comments', getComments);
+
+
+router.patch('/:id/comment', addComment);
+
+router.delete('/:id/comment/:commentId', deleteComment);
 
 module.exports = router
